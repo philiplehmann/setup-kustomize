@@ -18,7 +18,7 @@ const node_fs_1 = __nccwpck_require__(7561);
 let tempDirectory = process.env.RUNNER_TEMPDIRECTORY ?? "";
 const EnhancedOctokit = utils_1.GitHub.plugin(plugin_throttling_1.throttling);
 const githubToken = (0, core_1.getInput)("github-token");
-const failFast = (0, core_1.getBooleanInput)("fail-fast");
+const failFast = (0, core_1.getBooleanInput)("fail-fast", { required: false });
 let options = {
     throttle: {
         onRateLimit: (retryAfter, opts) => {
@@ -4176,7 +4176,7 @@ function findAllVersions(toolName, arch) {
     return versions;
 }
 exports.findAllVersions = findAllVersions;
-function getManifestFromRepo(owner, repo, auth, branch = 'main') {
+function getManifestFromRepo(owner, repo, auth, branch = 'master') {
     return __awaiter(this, void 0, void 0, function* () {
         let releases = [];
         const treeUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}`;
