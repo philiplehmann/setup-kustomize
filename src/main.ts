@@ -1,20 +1,20 @@
-import * as core from '@actions/core'
-import * as installer from './installer'
+import { getInput, setFailed } from "@actions/core";
+import { getKustomize } from "./installer";
 
 async function run(): Promise<void> {
-  try {
-    //
-    // Version is optional. If supplied, install / use from the tool cache
-    // If not supplied then task is still used to setup proxy, auth, etc...
-    //
-    const version = core.getInput('kustomize-version')
+	try {
+		//
+		// Version is optional. If supplied, install / use from the tool cache
+		// If not supplied then task is still used to setup proxy, auth, etc...
+		//
+		const version = getInput("kustomize-version");
 
-    if (version) {
-      await installer.getKustomize(version)
-    }
-  } catch (error) {
-    core.setFailed(`${error}`)
-  }
+		if (version) {
+			await getKustomize(version);
+		}
+	} catch (error) {
+		setFailed(`${error}`);
+	}
 }
 
-run()
+run();

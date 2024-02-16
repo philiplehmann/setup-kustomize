@@ -1,6 +1,6 @@
 {
   "name": "setup-kustomize",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Github action to setup-kustomize",
   "main": "lib/main.js",
   "scripts": {
