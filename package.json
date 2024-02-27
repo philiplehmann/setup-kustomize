@@ -2,7 +2,7 @@
   "name": "setup-kustomize",
   "description": "Github action to setup kustomize",
   "license": "MIT",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "dist/index.js",
   "author": "Philip Lehmann",
   "scripts": {
@@ -15,7 +15,7 @@
     "test": "vitest",
     "release:build": "yarn format && yarn build && yarn package",
     "github:release": "gh release create \"$(npm version patch --git-tag-version=false)\" -t Release -d=false -n \"\" -p=false",
-    "git:commit": "git add -A && git commit -m=\"Release\"",
+    "git:commit": "git add -A && git commit -m \"Release\"",
     "git:push": "git push origin main && git push --tags",
     "release": "yarn release:build && yarn github:release && yarn git:commit && yarn git:push"
   },
