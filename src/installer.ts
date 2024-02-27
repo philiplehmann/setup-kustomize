@@ -1,5 +1,5 @@
 import { GitHub, getOctokitOptions } from "@actions/github/lib/utils";
-import { OctokitOptions } from "@octokit/core/dist-types/types.d";
+import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
 import { throttling } from "@octokit/plugin-throttling";
 import { warning, getInput, getBooleanInput, addPath } from "@actions/core";
 import { downloadTool, extractTar, cacheFile, find } from "@actions/tool-cache";
