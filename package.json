@@ -3,7 +3,7 @@
   "description": "Github action to setup kustomize",
   "license": "MIT",
   "version": "2.2.2",
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "author": "Philip Lehmann",
   "scripts": {
     "watch": "tsc --watch",
@@ -11,10 +11,13 @@
     "format": "yarn biome format --write src/",
     "format-check": "yarn biome format src/",
     "lint": "yarn biome lint src/",
-    "package": "ncc build --source-map --license licenses.txt",
+    "package": "esbuild src/main.ts --bundle --minify --platform=node --outfile=dist/index.js",
     "test": "vitest",
-    "all": "yarn format && yarn build && yarn package",
-    "release": "yarn all && gh release create \"$(npm version patch --git-tag-version=false)\" -t Release -d=false -n \"\" -p=false && git add -A && git commit -m=\"Release\" && git push origin main && git push --tags"
+    "release:build": "yarn format && yarn build && yarn package",
+    "github:release": "gh release create \"$(npm version patch --git-tag-version=false)\" -t Release -d=false -n \"\" -p=false",
+    "git:commit": "git add -A && git commit -m=\"Release\"",
+    "git:push": "git push origin main && git push --tags",
+    "release": "yarn release:build && yarn github:release && yarn git:commit && yarn git:push"
   },
   "repository": {
     "type": "git",
@@ -37,7 +40,7 @@
     "@biomejs/biome": "1.5.3",
     "@types/node": "^20.11.19",
     "@types/semver": "^7.5.7",
-    "@vercel/ncc": "^0.38.1",
+    "esbuild": "^0.20.1",
     "typescript": "^5.3.3",
     "vitest": "^1.2.2"
   },
