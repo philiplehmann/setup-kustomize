@@ -1,11 +1,11 @@
+import { join } from "node:path";
+import { chmodSync } from "node:fs";
 import { GitHub, getOctokitOptions } from "@actions/github/lib/utils";
 import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
 import { throttling } from "@octokit/plugin-throttling";
 import { warning, getInput, getBooleanInput, addPath } from "@actions/core";
 import { downloadTool, extractTar, cacheFile, find } from "@actions/tool-cache";
-import { join } from "node:path";
 import { validRange, valid, maxSatisfying, gt } from "semver";
-import { chmodSync } from "node:fs";
 let tempDirectory = process.env.RUNNER_TEMPDIRECTORY ?? "";
 
 const EnhancedOctokit = GitHub.plugin(throttling);
@@ -84,7 +84,7 @@ interface Version {
 }
 
 async function getPinnedVersion(targetVersion: string): Promise<Version> {
-	const prefix = gt(targetVersion, "3.2.0") ? "kustomize/v" : "v";
+	const prefix = gt(targetVersion, "5.4.2") ? "kustomize/v" : "v";
 
 	try {
 		const response = await octokit.rest.repos.getReleaseByTag({

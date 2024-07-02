@@ -1,12 +1,12 @@
-name: 'Setup Kustomize'
+name: Kustomize Setup
 description: 'Setup a Kustomize environment and add it to the path'
-author: 'Imran Ismail <imran.codely@gmail.com>'
+author: philiplehmann
 branding:
-  icon: edit
-  color: purple
+  icon: download
+  color: blue
 inputs:
   kustomize-version:
-    description: 'Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0'
+    description: 'Version Spec of the version to use.  Examples: 5.x, 5.4.2, >=5.4.0'
     required: false
     default: '*'
   github-token:
